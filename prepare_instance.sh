@@ -13,11 +13,14 @@ VNNLIB_FILE=$4
 
 echo "Preparing $TOOL_NAME for benchmark instance in category '$CATEGORY' with onnx file '$ONNX_FILE' and vnnlib file '$VNNLIB_FILE'"
 
+if [$CATEGORY != "nn4sys"]
+
 # kill any zombie processes
 killall -q julia
 
 # script returns a 0 exit code if successful. If you want to skip a benchmark category you can return non-zero.
 yes n | gzip -kd "$ONNX_FILE"
 
-julia prepare_instance.jl "$ONNX_FILE"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+julia "${SCRIPT_DIR}prepare_instance.jl"  "$ONNX_FILE"
 exit 0
