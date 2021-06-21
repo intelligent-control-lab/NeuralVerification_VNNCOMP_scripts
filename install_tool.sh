@@ -10,6 +10,7 @@ sudo apt install git -y
 echo '
 using Pkg
 Pkg.add(url="https://github.com/sisl/NeuralVerification.jl")
+Pkg.add("PyCall")
 ' | julia
 
 git clone https://github.com/intelligent-control-lab/NeuralVerification_VNNCOMP_scripts.git
